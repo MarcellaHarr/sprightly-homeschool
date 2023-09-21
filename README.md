@@ -1,5 +1,9 @@
 # Sprightly Homeschool & Life
 
+<img src="./website/static/img/student_profile_page.PNG" alt="Curriculum's Page" width="99%"/>
+<br>
+<br>
+
 I am sharing my journey of building a fully functional website application as first a homeshooling mom and as a data analysis. I aimed at improving the organization, productivity, and convenience of homeschooling my soon-to-be eighth-grader. 
 
 ### Purpose
