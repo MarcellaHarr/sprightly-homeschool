@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}Error - SH&L{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+{% endblock %}
+{% block navbar %}
+    <div class="elapnavContainer">
+        <header class="border-bottom lh-1 py-1">
+            <div class="row">
+                <div class="pnavLogout col-4">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('authUser_views.logout') }}">Log out</a>
+                </div>
+                <div class="pnavBrand col-4 text-center">
+                    <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#"></a>
+                </div>
+                <div class="pnavSubjects col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary" href="#">Subjects</a>
+                </div>
+            </div>
+        </header>
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+                <a class="nav-item nav-link link-body-emphasis  active" href="#">Error</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/elaLessons">Language Arts</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/mathLessons">Math</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/scienceLessons">Science</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/historyLessons">History</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/socialLessons">Social Studies</a>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <body>
+        <div class="container py-4">
+            <div class="alert alert-danger">
+                <h4>Error:</h4>
+                <p>{{ error_message }}</p>
+            </div>
+            <a class="btn btn-outline-secondary" href="{{ url_for('webTemps_views.elaLessonsPage') }}">Back to Lessons</a>
+        </div>
+    </body>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}Math - SH&L{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+    <div class="mathpnavContainer">
+        <header class="border-bottom lh-1 py-1">
+            <div class="row">
+                <div class="pnavLogout col-4">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('authUser_views.logout') }}">Log out</a>
+                </div>
+                <div class="pnavBrand col-4 text-center">
+                    <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#"></a>
+                </div>
+                <div class="pnavSubjects col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary" href="/studentPortfolio">Portfolio</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+                <a class="nav-item nav-link link-body-emphasis" href="/profile">My Curriculum</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/elaLessons">Language Arts</a>
+                <a class="nav-item nav-link link-body-emphasis active" href="/mathLessons">Math</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/scienceLessons">Science</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/historyLessons">History</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/socialLessons">Social Studies</a>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <body class="mathContainer">
+        <!-- container -->
+        <section class="py-0 p-4 text-center">
+            <div class="row">
+                <div class="col-sm-1 col-md-11 mx-auto">
+                    <h1 class="fw-light">Mathmatics</h1>
+                    <p class="lead text-body-secondary">This beautiful and academically strong course is filled with
+                        connected learning and a simple daily lesson format including enjoyable activities and engaging
+                        themes.</p>
+                    <!-- <p>
+                            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                        </p> -->
+                </div>
+            </div>
+        </section>
+        <!-- Cards -->
+        <div class="album py-0">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for lesson in mthTable %}
+                    <div class="col">
+                        <!--First card-->
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" focusable="true">
+                                <title>Placeholder</title>
+                                <image href="../static/img/mathLessonManga.jpg" width="100%" height="100%" />
+                                <text class="mthLessonTitle" x="50%" y="50%" fill="#eceeef" text-anchor="middle" alignment-baseline="middle"
+                                    dy=".3em">
+                                    Lesson {{ lesson.subLessonNumber }}
+                                </text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">{{ lesson.subDescription[:51] if lesson.subDescription|length > 51 else lesson.subDescription }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ url_for('mathLesson_views.mthViewLesson', lesson_number=lesson.subLessonNumber) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                    </div>
+                                    <small class="text-body-secondary">{{ lesson.subDueDate }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end card-->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>  
+{% endblock %}

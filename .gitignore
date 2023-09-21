@@ -1,0 +1,17 @@
+# Ignore Python bytecode cache folders
+__pycache__/
+
+# Ignore images (Images not for public display)
+images/
+
+# Ignore instance folder (used for instance-specific configurations)
+instance/
+
+# Ignore migrations folder (database migration files)
+migrations/
+
+# Ignore virtual environment folder
+venv/
+
+# Ignore the 'sprightlyhandl.zip' database zipped file
+sprightlyhandl.zip

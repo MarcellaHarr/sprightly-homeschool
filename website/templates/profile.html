@@ -1,0 +1,187 @@
+{% extends "layout.html" %}
+{% block title %}My Account - SH&L{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+{% endblock %}
+{% block navbar %}
+<div class="pnavContainer">
+  <header class="border-bottom lh-1 py-3">
+    <div class="row">
+      <div class="pnavLogout col-4">
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('authUser_views.logout') }}">Log out</a>
+      </div>
+      <div class="pnavBrand col-4 text-center">
+        <a class="blog-header-logo" href="#">Homeschool 2023-2024</a>
+      </div>
+      <div class="pnavSubjects col-4 d-flex justify-content-end align-items-center">
+        <a class="btn btn-sm btn-outline-secondary" href="/studentPortfolio">Portfolio</a>
+      </div>
+    </div>
+  </header>
+  <div class="nav-scroller py-1 mb-3 border-bottom">
+    <nav class="nav nav-underline">
+      <a class="nav-item nav-link link-body-emphasis active" href="/">Home</a>
+      <a class="nav-item nav-link link-body-emphasis" href="/elaLessons">Language Arts</a>
+      <a class="nav-item nav-link link-body-emphasis" href="/mathLessons">Math</a>
+      <a class="nav-item nav-link link-body-emphasis" href="/scienceLessons">Science</a>
+      <a class="nav-item nav-link link-body-emphasis" href="/historyLessons">History</a>
+      <a class="nav-item nav-link link-body-emphasis" href="/socialLessons">Social Studies</a>
+    </nav>
+  </div>
+</div>
+{% endblock %}
+{% block body %}
+{% if logSuccessful %}
+<div class="alert alert-light alert-dismissible fade show" role="alert">
+  <strong>{{ logSuccessful }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<body class="profileBodyContainer">
+  {% block main %}
+  <main class="container">
+    <div class="profileBodyBanner p4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+      <div class="pbbInnerContnr px-0">
+        <h1 class="profileBodyTitle card-title">{{ current_user.userFirstName }}'s Curriculum</h1>
+        <p class="profileBodyP1"></p>
+        <p class="profileBodyP2"></p>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+    <!-- Profile Cards -->
+    <div class="row">
+      <!-- Language Arts -->
+      <div class="profileCards col-md-6">
+        {% if elaLessonData %}
+        <div class="innrCardContainer row g-0 flex-md-row mb-4 h-md-250">
+          <div class="pCard1 col p-4 d-flex flex-column position-static">
+            <em class="pCardHighlight d-inline-block mb-2">{{ currentDate }}</em>
+            <h3 class="pCardFeat mb-0">{{ elaLessonData[0].subTopic[:33] if elaLessonData[0].subTopic|length > 33 else elaLessonData[0].subTopic }}</h3>
+            <div class="pCardDate mb-1"><em>Due {{ elaLessonData[0].subDueDate }}</em></div>
+            <p class="pCardTxt mb-auto"><small>{{ elaLessonData[0].subDescription[:50] if
+              elaLessonData[0].subDescription|length
+              > 50 else elaLessonData[0].subDescription }}</small></p>
+            <a href="{{ url_for('elaLesson_views.elaViewLesson', lesson_number=elaLessonData[0].subLessonNumber) }}"
+              class="pCardLink1 btn btn-sm btn-outline-secondary">
+              Enter Language Arts
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="200" height="250" src="../static/img/elaThumbnail.png"
+              alt="Thumbnail">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <!-- Math -->
+      <div class="profileCards col-md-6">
+        {% if mthLessonData %}
+        <div class="innrCardContainer row g-0 flex-md-row mb-4 h-md-250">
+          <div class="pCard2 col p-4 d-flex flex-column position-static">
+            <em class="pCardHighlight d-inline-block mb-2">{{ currentDate }}</em>
+            <h3 class="pCardFeat mb-0">{{ mthLessonData[0].subTopic[:33] if mthLessonData[0].subTopic|length > 33 else mthLessonData[0].subTopic }}</h3>
+            <div class="pCardDate mb-1"><em>Due {{ mthLessonData[0].subDueDate }}</em></div>
+            <p class="pCardTxt mb-auto"><small>{{ mthLessonData[0].subDescription[:50] if
+              mthLessonData[0].subDescription|length
+              > 50 else mthLessonData[0].subDescription }}</small></p>
+            <a href="{{ url_for('mathLesson_views.mthViewLesson', lesson_number=mthLessonData[0].subLessonNumber) }}"
+              class="pCardLink2 btn btn-sm btn-outline-secondary">
+              Enter Mathematics
+              <svg class="bi">
+                <use xlink:href="#chevron-right"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="200" height="250" src="../static/img/mathThumbnail.png"
+              alt="Thumbnail">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <!-- Science -->
+      <div class="profileCards col-md-6">
+        {% if sciLessonData %}
+        <div class="innrCardContainer row g-0 flex-md-row mb-4 h-md-250">
+          <div class="pCard3 col p-4 d-flex flex-column position-static">
+            <em class="pCardHighlight d-inline-block mb-2">{{ currentDate }}</em>
+            <h3 class="pCardFeat mb-0">{{ sciLessonData[0].subTopic[:33] if sciLessonData[0].subTopic|length > 33 else sciLessonData[0].subTopic }}</h3>
+            <div class="pCardDate mb-1"><em>Due {{ sciLessonData[0].subDueDate }}</em></div>
+            <p class="pCardTxt mb-auto"><small>{{ sciLessonData[0].subDescription[:50] if
+              sciLessonData[0].subDescription|length
+              > 50 else sciLessonData[0].subDescription }}</small></p>
+            <a href="{{ url_for('scienceLesson_views.sciViewLesson', lesson_number=sciLessonData[0].subLessonNumber) }}"
+              class="pCardLink3 btn btn-sm btn-outline-secondary">
+              Enter Science
+              <svg class="bi">
+                <use xlink:href="#chevron-right"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="200" height="250" src="../static/img/scienceThumbnail.png"
+              alt="Thumbnail">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <!-- History -->
+      <div class="profileCards col-md-6">
+        {% if histLessonData %}
+        <div class="innrCardContainer row g-0 flex-md-row mb-4 h-md-250">
+          <div class="pCard4 col p-4 d-flex flex-column position-static">
+            <em class="pCardHighlight d-inline-block mb-2">{{ currentDate }}</em>
+            <h3 class="pCardFeat mb-0">{{ histLessonData[0].subTopic[:33] if histLessonData[0].subTopic|length > 33 else histLessonData[0].subTopic }}</h3>
+            <div class="pCardDate mb-1"><em>Due {{ histLessonData[0].subDueDate }}</em></div>
+            <p class="pCardTxt mb-auto"><small>{{ histLessonData[0].subDescription[:50] if
+              histLessonData[0].subDescription|length > 50 else histLessonData[0].subDescription }}</small></p>
+            <a href="{{ url_for('historyLesson_views.histViewLesson', lesson_number=histLessonData[0].subLessonNumber) }}"
+              class="pCardLink4 btn btn-sm btn-outline-secondary">
+              Enter History
+              <svg class="bi">
+                <use xlink:href="#chevron-right"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="200" height="250" src="../static/img/historyThumbnail.png"
+              alt="Thumbnail">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <!-- Social Studies -->
+      <div class="profileCards col-md-6">
+        {% if socLessonData %}
+        <div class="innrCardContainer row g-0 flex-md-row mb-4 h-md-250">
+          <div class="pCard5 col p-4 d-flex flex-column position-static">
+            <em class="pCardHighlight d-inline-block mb-2">{{ currentDate }}</em>
+            <h3 class="pCardFeat mb-0">{{ socLessonData[0].subTopic[:33] if socLessonData[0].subTopic|length > 33 else socLessonData[0].subTopic }}</h3>
+            <div class="pCardDate mb-1"><em>Due {{ socLessonData[0].subDueDate }}</em></div>
+            <p class="pCardTxt mb-auto"><small>{{ socLessonData[0].subDescription[:50] if
+              socLessonData[0].subDescription|length
+              > 50 else socLessonData[0].subDescription }}</small></p>
+            <a href="{{ url_for('socialLesson_views.socViewLesson', lesson_number=socLessonData[0].subLessonNumber) }}"
+              class="pCardLink5 btn btn-sm btn-outline-secondary">
+              Enter Social Studies
+              <svg class="bi">
+                <use xlink:href="#chevron-right"></use>
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="200" height="250" src="../static/img/socialThumbnail.png"
+              alt="Thumbnail">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+  {% endblock %}
+</body>
+{% endblock %}

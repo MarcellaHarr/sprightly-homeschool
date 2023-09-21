@@ -1,0 +1,769 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Miltonian&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Shadows+Into+Light&display=swap');
+@font-face {
+    font-family: 'Anime';
+    src: url("../fonts/Anime\ Kids\ -\ Personal\ Use.otf");
+}
+@font-face {
+    font-family: 'Juniory';
+    src: url("../fonts/Juniory.ttf");
+}
+
+*html,
+body {
+    width: auto;
+    height: 100vh;
+    max-height: fit-content;
+}
+
+body::-webkit-scrollbar {
+    width: 1em;
+    background-color: transparent;
+}
+
+
+/*---------------------*/
+/* NAVIGATION BAR*/
+/*---------------------*/
+.navbarContnr li {
+    font-family: 'Lemonada', cursive;
+    color: rgb(0, 0, 0);
+}
+
+
+/*---------------------*/
+/* INDEX PAGE */
+/*---------------------*/
+
+.idxCover {
+    background-color: rgb(255, 197, 181);
+}
+
+:is(main):where(.idxContainer) {
+    margin-bottom: 7.5rem;
+}
+
+
+.idxCover>div h1[class="idxTitle"] {
+    /* Sprightly ... Life */
+    font-family: 'Cinzel', serif;
+    color: rgb(0, 0, 0);
+    font-size: 3.10em;
+    font-weight: bolder;
+    margin-top: 2em;
+    margin-bottom: 4rem;
+}
+
+.idxCover> #idxEnterButton {
+    /* Enter Button */
+    font-family: 'Lemonada', cursive;
+    font-size: 2rem;
+    text-shadow: -1px 0 0 rgb(0, 0, 0);
+    text-decoration: none;
+    color: rgb(244, 244, 244);
+}
+
+.idxCover #idxEnterButton:hover {
+    color: rgb(139, 107, 27);
+}
+
+
+/*---------------------*/
+/* LOGIN PAGE */
+/*---------------------*/
+.logBody {
+    background: linear-gradient(rgba(44, 62, 80, 0.118), rgba(221, 225, 228, 0.19)), url("../img/login_background_image.jpg") no-repeat center center fixed;
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.logBody .form-signin {
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.logBody .form-signin .form-control:focus {
+    box-shadow: none;
+}
+
+.logBody form {
+    font-family: 'Architects Daughter', cursive;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    align-items: center;
+}
+
+.logBody h1 {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.logBody div[class="form-floating"] {
+    opacity: 70%;
+    margin-bottom: 0.25em;
+}
+
+.logBody button {
+    background-color: transparent;
+    border-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.logBody button:hover {
+    background-color: rgba(42, 42, 42, 0.171);
+    border-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+.logBody .form-check {
+    color: rgb(255, 197, 181);
+}
+
+.form-signin .form-floating .form-control:focus~.logLabel,
+.form-floating .form-control:not(:placeholder-shown)~.logLabel,
+.form-floating .form-select~.logLabel {
+    opacity: .65;
+    transform: scale(.93) translateY(-.5rem) translateX(.15rem);
+}
+
+.form-floating>label {
+    text-align: unset;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+/*---------------------*/
+/* REGISTRATION PAGE */
+/*---------------------*/
+
+.regBody {
+    background: linear-gradient(rgba(52, 52, 52, 0.475), rgba(20, 20, 20, 0.808)), url("../img/registration_background_image.jpg") no-repeat center center fixed;
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.regBody {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent;
+    scroll-behavior: smooth;
+}
+
+.regBody::-webkit-scrollbar {
+    display: none;
+}
+
+.regBody .regFormFrame {
+    font-family: 'Architects Daughter', cursive;
+    background-color: rgb(112, 112, 112, 0.50);
+    min-width: 500px;
+}
+
+
+/*---------------------*/
+/* PROFILE PAGE */
+/*---------------------*/
+
+/*main container*/
+.pnavContainer {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.pnavContainer>*::before {
+    box-sizing: border-box;
+}
+
+.pnavContainer>*::after {
+    box-sizing: border-box;
+}
+
+.pnavContainer>div {
+    display: block;
+}
+
+/*header*/
+.pnavContainer>header .lh-1 {
+    line-height: 1;
+}
+
+.pnavContainer .border-bottom, .lh-1>.py-1 {
+    padding-bottom: 1rem;
+}
+
+.pnavContainer>header .border-bottom {
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+.pnavContainer>header {
+    display: block;
+}
+
+:is(div.pnavBrand) a {
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Cinzel', serif;
+}
+
+.pnavContainer .row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    display: flex;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    box-sizing: border-box;
+}
+
+.pnavContainer .pnavLogout {
+    padding-top: 0.25rem;
+}
+
+.pnavContainer .pnavBrand {
+    text-align: center;
+}
+
+.pnavContainer .pnavSubjects {
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.pnavContainer .pnavBrand>.col-4, 
+.pnavSubjects>.col-4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
+/*scrollable navbar*/
+.pnavContainer .nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.pnavContainer .nav-scroller>.py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.pnavContainer .nav-scroller>.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.pnavContainer .nav-scroller>.border-bottom {
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+
+.pnavContainer .nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+.pnavContainer .nav-underline {
+    --bs-nav-underline-gap: 1rem;
+    --bs-nav-underline-border-width: 0.125rem;
+    --bs-nav-underline-link-active-color: var(--bs-emphasis-color);
+    gap: var(--bs-nav-underline-gap);
+}
+
+.pnavContainer .nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: var(--bs-link-color);
+    --bs-nav-link-hover-color: var(--bs-link-hover-color);
+    --bs-nav-link-disabled-color: var(--bs-secondary-color);
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+
+/*body section*/
+.profileBodyContainer {
+    background: linear-gradient(95deg, rgba(255, 255, 255, 0.445), rgba(255, 239, 185, 0.636)), url("../img/mangaBackground.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.profileBodyContainer {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent;
+    scroll-behavior: smooth;
+}
+
+.profileBodyContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.profileBodyButton {
+    font-weight: 700;
+}
+
+.pbtn-emphasis {
+    --bs-text-opacity: 1;
+    color: var(--bs-emphasis-color);
+}
+
+.rounded {
+    border-radius: var(--bs-border-radius);
+}
+
+/*profile banner background*/
+.bg-body-secondary {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(95deg, rgba(255, 255, 255, 0.082), rgba(216, 216, 216, 0.069)), url("../img/profileManagEffect.jpg") no-repeat center top;
+    background-size: cover;
+}
+
+.text-body-emphasis {
+    --bs-bg-opacity: 1;
+    color: rgb(207, 207, 207);
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.pbbInnerContnr>div {
+    display: block;
+}
+
+.px-0 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.pbbInnerContnr h1[class="profileBodyTitle card-title"] {
+    font-family: 'Juniory', sans-serif;
+    font-size: calc(5.475rem);
+    font-weight: 200;
+    /* margin-top: 0; */
+    /* margin-bottom: 0.5rem; */
+    display: block;
+    /* margin-block-start: 0.67em; */
+    /* margin-block-end: 0.67em; */
+    /* margin-inline-start: 0px; */
+    /* margin-inline-end: 0px; */
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-shadow: 2px 2px rgb(255, 192, 155);
+}
+
+.pbbInnerContnr p[class="profileBodyP1"] {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.pbbInnerContnr p[class="profileBodyP2"] {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    font-weight: 300;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.profileCardContainer>.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.profileBodyContainer .profileCardContainer {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
+.profileBodyContainer .profileCardContainer {
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer {
+    background-color: rgb(255, 255, 255);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer .pCard1 .pCardDate {
+    color: rgb(51, 213, 255);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer .pCard1 {
+    background-color: rgb(153, 170, 56);
+}
+:is(div.pCard1) a.pCardLink1 {
+    width: 9.375rem;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 251, 252);
+}
+:is(div.pCard1) a.pCardLink1:hover {
+    width: 9.375rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 95, 95);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer .pCard2 .pCardDate {
+    color: rgb(51, 213, 255);
+}
+.profileBodyContainer .profileCards .innrCardContainer .pCard2 {
+    background-color: rgba(48, 51, 46, 0.85);
+}
+:is(div.pCard2) a.pCardLink2 {
+    width: 9.375rem;
+    height: 1.909rem;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 251, 252);
+}
+:is(div.pCard2) a.pCardLink2:hover {
+    width: 9.375rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 95, 95);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer .pCard3 .pCardDate {
+    color: rgb(51, 213, 255);
+}
+.profileBodyContainer .profileCards .innrCardContainer .pCard3 {
+    background-color: rgb(255, 153, 63);
+}
+:is(div.pCard3) a.pCardLink3 {
+    width: 9.375rem;
+    height: 1.909rem;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 251, 252);
+}
+:is(div.pCard3) a.pCardLink3:hover {
+    width: 9.375rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 95, 95);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer .pCard4 .pCardDate {
+    color: rgb(51, 213, 255);
+}
+.profileBodyContainer .profileCards .innrCardContainer .pCard4 {
+    background-color: rgb(73, 154, 154);
+}
+:is(div.pCard4) a.pCardLink4 {
+    width: 9.375rem;
+    height: 1.909rem;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 251, 252);
+}
+:is(div.pCard4) a.pCardLink4:hover {
+    width: 9.375rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 95, 95);
+}
+
+.profileBodyContainer .profileCards .innrCardContainer .pCard5 .pCardDate {
+    color: rgb(51, 213, 255);
+}
+.profileBodyContainer .profileCards .innrCardContainer .pCard5 {
+    background-color: rgb(201, 134, 134);
+}
+:is(div.pCard5) a.pCardLink5 {
+    width: 9.375rem;
+    height: 1.909rem;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 251, 252);
+}
+:is(div.pCard5) a.pCardLink5:hover {
+    width: 9.375rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 95, 95);
+}
+
+.profileBodyContainer .profileCards {
+    flex: 0 0 auto;
+    width: 50%;
+}
+
+.profileBodyContainer .innrCardContainer {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border-radius: var(--bs-border-radius);
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+
+
+/*---------------------*/
+/* LANGUAGE ARTS */
+/*---------------------*/
+.elapnavContainer:is(div):where(.elapnavContainer) {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.elaContainer div[class="album"] {
+    height: 70vh;
+}
+
+.elaContainer .album div[class="container"] {
+    height: unset;
+    scroll-behavior: smooth;
+}
+
+.elaContainer section.py-5 {
+    padding-top: 0!important;
+}
+
+.elaContainer section div.py-5 {
+    padding-top: 0!important;
+}
+
+.elaContainer div p[class="card-text"] {
+    overflow: hidden;
+    width: 65ch;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.elaContainer .card svg>text[class="elaLessonTitle"] {
+    fill: rgb(174, 123, 172);
+    font-family: 'Juniory', sans-serif;
+    text-shadow: 2px 2px rgb(29, 5, 28);
+}
+
+/*---------------------*/
+/* MATH */
+/*---------------------*/
+.mathpnavContainer:is(div):where(.mathpnavContainer) {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.mathContainer div[class="album"] {
+    height: 70vh;
+}
+
+.mathContainer .album div[class="container"] {
+    height: unset;
+    scroll-behavior: smooth;
+}
+
+.mathContainer section.py-5 {
+    padding-top: 0!important;
+}
+
+.mathContainer section div.py-5 {
+    padding-top: 0!important;
+}
+
+.mathContainer .card svg>text[class="mthLessonTitle"] {
+    fill: rgb(137, 74, 2);
+    font-family: 'Juniory', sans-serif;
+}
+
+
+/*---------------------*/
+/* HISTORY */
+/*---------------------*/
+.histpnavContainer:is(div):where(.histpnavContainer) {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.histContainer div[class="album"] {
+    height: 70vh;
+}
+
+.histContainer .album div[class="container"] {
+    height: unset;
+    scroll-behavior: smooth;
+}
+
+.histContainer section.py-5 {
+    padding-top: 0!important;
+}
+
+.histContainer section div.py-5 {
+    padding-top: 0!important;
+}
+
+.histContainer .card svg>text[class="histLessonTitle"] {
+    fill: rgb(0, 0, 0);
+    font-family: 'Juniory', sans-serif;
+}
+
+
+/*---------------------*/
+/* SCIENCE */
+/*---------------------*/
+.sciencepnavContainer:is(div):where(.sciencepnavContainer) {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.scienceContainer div[class="album"] {
+    height: 70vh;
+}
+
+.scienceContainer .album div[class="container"] {
+    height: unset;
+    scroll-behavior: smooth;
+}
+
+.scienceContainer section.py-5 {
+    padding-top: 0!important;
+}
+
+.scienceContainer section div.py-5 {
+    padding-top: 0!important;
+}
+
+.scienceContainer .card svg>text[class="sciLessonTitle"] {
+    fill: rgb(19, 141, 21);
+    font-family: 'Juniory', sans-serif;
+}
+
+
+/*---------------------*/
+/* SOCIAL STUDIES */
+/*---------------------*/
+.socialpnavContainer:is(div):where(.socialpnavContainer) {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.socialContainer div[class="album"] {
+    height: 70vh;
+}
+
+.socialContainer .album div[class="container"] {
+    height: unset;
+    scroll-behavior: smooth;
+}
+
+.socialContainer section.py-5 {
+    padding-top: 0!important;
+}
+
+.socialContainer section div.py-5 {
+    padding-top: 0!important;
+}
+
+.socialContainer .card svg>text[class="socLessonTitle"] {
+    fill: rgb(86, 86, 86);
+    font-family: 'Juniory', sans-serif;
+    text-shadow: 2px 2px rgb(41, 36, 41);
+}
+
+/*---------------------*/
+/* Student Portfolio */
+/*---------------------*/
+
+.bgimg img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+
+/*---------------------*/
+/* UPLOAD */
+/*---------------------*/
+.uploadContainer:is(form):where(.uploadContainer) {
+    width: 50%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin: 0 5em;
+}
+
+
+.insertContainer h1[class="uploadTitle"] {
+    margin-top: -3em;
+}
+
+
+/*---------------------*/
+/* FOOTER */
+/*---------------------*/
+.footer {
+    background-color: #fff;
+}

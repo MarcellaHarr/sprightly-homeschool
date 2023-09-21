@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block title %}Language Arts - SH&L{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+{% endblock %}
+{% block navbar %}
+    <div class="elapnavContainer">
+        <header class="border-bottom lh-1 py-1">
+            <div class="row">
+                <div class="pnavLogout col-4">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('authUser_views.logout') }}">Log out</a>
+                </div>
+                <div class="pnavBrand col-4 text-center">
+                    <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#"></a>
+                </div>
+                <div class="pnavSubjects col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary" href="/studentPortfolio">Portfolio</a>
+                </div>
+            </div>
+        </header>
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+                <a class="nav-item nav-link link-body-emphasis" href="/profile">My Curriculum</a>
+                <a class="nav-item nav-link link-body-emphasis active" href="/elaLessons">Language Arts</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/mathLessons">Math</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/scienceLessons">Science</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/historyLessons">History</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/socialLessons">Social Studies</a>
+                <!-- <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a> -->
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <body class="elaContainer">
+        <!-- container -->
+        <section class="py-0 p-4 text-center">
+            <div class="row">
+                <div class="col-sm-1 col-md-11 mx-auto">
+                    <h1 class="fw-light">Language Arts</h1>
+                    <p class="lead text-body-secondary">The course is designed to provide high academics while instilling a
+                        love for learning in children. It focuses on teaching literature, writing, grammar, punctuation,
+                        spelling, vocabulary, geography, and art. The curriculum is faith-based and aims to cultivate good
+                        character in students. The course takes small incremental steps to prevent overwhelm and allows
+                        parental participation if desired. It goes beyond Common Core standards, emphasizing "good and
+                        beautiful" style writing and includes additional materials like index cards, timer, drawing pencils,
+                        sketchbook, and a notebook with lined paper. Access to a computer is required for watching videos
+                        and typing some writing assignments.</p>
+                </div>
+            </div>
+        </section>
+        <!-- py-5 -->
+        <div class="album py-0">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for lesson in elaTable %}
+                    <div class="col">
+                        <!--First card-->
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" focusable="true">
+                                <title>Placeholder</title>
+                                <image href="../static/img/elaLessonManga.jpg" alt="Image from pngtree.com" width="100%" height="100%" />
+                                <text class="elaLessonTitle" x="50%" y="50%" fill="#eceeef" text-anchor="middle" alignment-baseline="middle"
+                                    dy=".3em">
+                                    Lesson {{ lesson.subLessonNumber }}
+                                </text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">{{ lesson.subDescription[:51] if lesson.subDescription|length > 51 else lesson.subDescription }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ url_for('elaLesson_views.elaViewLesson', lesson_number=lesson.subLessonNumber) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                                    </div>
+                                    <small class="text-body-secondary">{{ lesson.subDueDate }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end first card-->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}

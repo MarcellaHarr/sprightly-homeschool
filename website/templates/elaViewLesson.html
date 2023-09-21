@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block title %}Lesson - SH&L{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+{% endblock %}
+{% block navbar %}
+    <div class="elapnavContainer">
+        <header class="border-bottom lh-1 py-1">
+            <div class="row">
+                <div class="pnavLogout col-4">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('authUser_views.logout') }}">Log out</a>
+                </div>
+                <div class="pnavBrand col-4 text-center">
+                    <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#"></a>
+                </div>
+                <div class="pnavSubjects col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary" href="/studentPortfolio">Portfolio</a>
+                </div>
+            </div>
+        </header>   
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+                <a class="nav-item nav-link link-body-emphasis" href="/profile">My Curriculum</a>
+                <a class="nav-item nav-link link-body-emphasis  active" href="#">Language Arts Lesson {{ lesson_number }}</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/elaLessons">Language Arts</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/mathLessons">Math</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/scienceLessons">Science</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/historyLessons">History</a>
+                <a class="nav-item nav-link link-body-emphasis" href="/socialLessons">Social Studies</a>
+                <!-- <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a> -->
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+<body>
+  <div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <!-- Carousel -->
+        <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel" style="max-width: 1200px; height: 450px;">
+          <div class="carousel-inner">
+            {% for lesson_number, images in imagesByLesson.items() %}
+            {% for image in images %}
+              <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <!-- Convert the binary image data to base64 and use it as the source of the image -->
+                <img src="data:image/jpeg;base64,{{ image.subpxLessonPic }}" class="d-block w-100" alt="Lesson Image" loading="lazy" style="max-width: 400px;">
+              </div>
+            {% endfor %}
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <!-- End carousel -->
+      </div>
+    </div>
+    <div class="row align-items-md-stretch">
+      <div class="">
+        <div class="h-10 p-1 rounded-3">
+          <form class="jumboQuestions" data-uid="ela-submitResp-form-uid" data-lesson-number="{{ lesson_number }}" method="post" action="{{ url_for('elaLesson_views.elaViewLesson', lesson_number=lesson_number) }}"
+            enctype="multipart/form-data">
+            {% for question in elaQuestions %}
+              <div class="pb-1">
+                <input type="text" class="form-control" id="subAnswer{{ loop.index }}" name="response_{{ loop.index }}"
+                  aria-label="Sizing example input" placeholder="{{ question }}" aria-describedby="inputGroup-sizing-sm"
+                  rows="1">
+              </div>
+              <!-- Add a hidden input field to pass the questions to the server -->
+              <input type="hidden" name="question_{{ loop.index }}" value="{{ question }}">
+            {% endfor %}
+              <button type="submit" id="elaSubmitResponse" class="btn btn-outline-secondary btn-sm">Submit
+                Responses</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+          <form class="jumboUploads" data-uid="ela-viewupload-form-uid" data-lesson-number="{{ lesson_number }}" method="post" action="/elaViewUploads"
+            enctype="multipart/form-data">
+            <h2>Upload files (optional)</h2>
+            <p>Or, keep it light and add a border for some added definition to the boundaries of your content.</p>
+            <input class="ok" type="file" name="fileA">
+            <input class="ok" type="file" name="fileB">
+            <input class="ok" type="file" name="fileC">
+            <button id="elaViewUpldSubmit" class="btn btn-outline-secondary btn-sm" type="submit">Submit
+              upload(s)</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ... scripts ... -->
+  <script src="../static/js/carousel.js"></script>
+  <script src="../static/js/ela_ajaxHandler.js"></script>
+</body>
+{% endblock %}

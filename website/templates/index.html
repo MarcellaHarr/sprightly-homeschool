@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block style %}
+{{ super() }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@1,900&display=swap" rel="stylesheet">
+{% endblock %}
+{% block navbar %}
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="navbarContnr container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="../static/img/shlLogo.png" alt="Logo" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                Sprightly Homeschool & Life
+            </a>
+            <button class="navbar-toggler" type="button" aria-controls="navbar" aria-expanded="false"
+                aria-label="Toggle navigation" data-bs-target="#navbar" data-bs-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-lg-flex" id="navbar">
+                {% if current_user.is_authenticated %}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('dashUser_views.profile') }}">My Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('authUser_views.logout') }}">Log Out</a></li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('authUser_views.register') }}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('authUser_views.login') }}">Log In</a></li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block body %}
+    <body class="idxCover px-3 my-5 py-4">
+        <div class="idxContainer p-5 text-center">
+            <h1 class="idxTitle">Sprightly Homeschool & Life</h1>
+            <p class="lead">
+                <a href="{{ url_for('authUser_views.register') }}"
+                    class="btn btn-lg fw-bold border-white" id="idxEnterButton">Enter</a>
+            </p>
+        </div>
+    </body>   
+{% endblock %}
+{% block footer %}
+{% endblock %}
+

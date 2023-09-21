@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Log Out - SH&L{% endblock %}
+{% block styles %}
+    {{super()}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+{% endblock %}
+{% block main %}
+{% if loggdOut %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>{{ loggdOut }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+<body class="logBody text-center" data-new-gr-c-s-check-loaded="14.1079.0" data-gr-ext-installed="">
+    <main class="form-signin mb-3">
+        <form action="{{ url_for('authUser_views.logout') }}" method="post">
+            <img class="mb-4" src="../static/img/shlLogo.png" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Please sign again!</h1>
+        </form>
+    </main>
+</body>
+{% endblock %}
