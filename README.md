@@ -50,7 +50,8 @@ I initiated this project on July 28th and successfully completed it on September
 <br>
 
 # Current Challenges
-  - Stalled & Slow Image loads 
+  - Stalled or Slow Image loads 
+  <img src="./website/static/img/stalledLessonImage.JPG" alt="" width="99%" /> 
 
 <br>
 
