@@ -15,3 +15,6 @@ venv/
 
 # Ignore the 'sprightlyhandl.zip' database zipped file
 sprightlyhandl.zip
+
+# Ignore the copy Python Projects' script
+copyPythonProject.py
