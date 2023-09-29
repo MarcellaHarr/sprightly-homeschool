@@ -1,4 +1,4 @@
-# Sprightly Homeschool & Life
+# Sprightly Homeschool & Life Website
 
 <img src="./website/static/img/student_profile_page.PNG" alt="Curriculum's Page" width="99%"/>
 <br>
