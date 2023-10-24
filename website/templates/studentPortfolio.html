@@ -1,248 +1,256 @@
 <!DOCTYPE html>
 <html>
-    <title>{% block title %}Portfolio - SH&L{% endblock %}</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../static/css/normalize.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="{{ url_for('static', filename='img/shlLogo.png') }}" sizes="16x16 32x32"
-        type="image/png" />
-    <style>
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Montserrat", sans-serif
-        }
-    
-        ::-webkit-scrollbar {
-            display: none;
-        }
-    
-        .w3-row-padding img {
-            margin-bottom: 12px
-        }
-    
-        .score-bar {
-            background-color: #f2f2f2;
-            height: 30px;
-        }
-    
-        .score-bar-excellent {
-            width: 100%;
-            background-color: rgb(0, 104, 3);
-        }
-    
-        .score-bar-good {
-            width: 70%;
-            background-color: rgb(125, 207, 128);
-        }
-    
-        .score-bar-moderate {
-            width: 60%;
-            background-color: rgb(242, 222, 87);
-        }
-    
-        .score-bar-poor {
-            width: 49%;
-            background-color: rgb(219, 130, 21);
-        }
-    
-        .score-bar-0 {
-            width: 9%;
-            background-color: rgb(232, 24, 9);
-        }
-    </style>    
-    <body>
-        <!-- Sidebar with image -->
-        <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
-            <div class="bgimg">
-                {% if studentPicture %}
-                    <img src="data:image/png;base64,{{ studentPicture | b64encode }}" alt="User Portrait" style="width: 100%;">
-                {% else %}
-                    <img src="../static/img/studentPortraitPic.jpg" alt="Default User Portrait" style="width: 100%;">
-                {% endif %}
-                <form id="" data-uid="" action="/studentPic" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="bg_image">
-                    <input type="submit" value="Upload Image">
-                </form>
-            </div>
-        </nav>
-        <!-- Hidden Sidebar (reveals when clicked on menu icon)-->
-        <nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge"
-            style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
-            <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright"
-                style="padding:0 12px;">
-                <i class="fa fa-remove"></i>
-            </a>
-            <div class="w3-bar-block w3-center">
-                <a href="/profile" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-                    onclick="closeNav()">Curriculum</a>
-                <a href="/elaLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-                    onclick="closeNav()">Language Arts</a>
-                <a href="/mathLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-                    onclick="closeNav()">Math</a>
-                <a href="/scienceLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-                    onclick="closeNav()">Science</a>
-                <a href="/historyLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-                    onclick="closeNav()">History</a>
-                <a href="/socialLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-                    onclick="closeNav()">Social Studies</a>
-            </div>
-        </nav>
-        <!-- Page Content -->
-        <div class="w3-main w3-padding-large" style="margin-left:40%">
-            <!-- Menu icon to open sidebar -->
-            <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;"
-                onclick="openNav()"><i class="fa fa-bars"></i></span>
-            <!-- Header -->
-            <header class="w3-container w3-center" style="padding:128px 16px" id="home">
-                <h1 class="w3-jumbo"><b>{{ studentFN }}</b></h1>
-                <p>2023-2024 Homeschool Year</p>
-                <img src="data:image/png;base64,{{ studentPicture.userpxUploadPic }}" class="w3-image w3-hide-large w3-hide-small w3-round"
-                    style="display:block;width:60%;margin:auto;">
-                <img src="data:image/png;base64,{{ studentPicture.userpxUploadPic }}" class="w3-image w3-hide-large w3-hide-medium w3-round" width="1000" height="1333">
-            </header>
-            <!-- Portfolio Section -->
-            <div class="w3-padding-32 w3-content" id="portfolio">
-                <h2 class="w3-text-grey">My Work</h2>
-                <hr class="w3-opacity">
-                <!-- Grid for photos -->
+<title>{% block title %}Portfolio - SH&L{% endblock %}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../static/css/normalize.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="{{ url_for('static', filename='img/shlLogo.png') }}" sizes="16x16 32x32" type="image/png" />
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Montserrat", sans-serif
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .w3-row-padding img {
+        margin-bottom: 12px
+    }
+
+    .score-bar {
+        background-color: #f2f2f2;
+        height: 30px;
+    }
+
+    .score-bar-excellent {
+        width: 100%;
+        background-color: rgb(0, 104, 3);
+    }
+
+    .score-bar-good {
+        width: 70%;
+        background-color: rgb(125, 207, 128);
+    }
+
+    .score-bar-moderate {
+        width: 60%;
+        background-color: rgb(242, 222, 87);
+    }
+
+    .score-bar-poor {
+        width: 49%;
+        background-color: rgb(219, 130, 21);
+    }
+
+    .score-bar-0 {
+        width: 9%;
+        background-color: rgb(232, 24, 9);
+    }
+</style>
+
+<body>
+    <!-- Sidebar with image -->
+    <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+        <div class="bgimg">
+            {% if studentPicture %}
+            <img src="data:image/png;base64,{{ studentPicture | b64encode }}" alt="User Portrait" style="width: 100%;">
+            {% else %}
+            <img src="../static/img/studentPortraitPic.jpg" alt="Default User Portrait" style="width: 100%;">
+            {% endif %}
+            <form id="" data-uid="" action="/studentPic" method="POST" enctype="multipart/form-data">
+                <input type="file" name="bg_image">
+                <input type="submit" value="Upload Image">
+            </form>
+        </div>
+    </nav>
+    <!-- Hidden Sidebar (reveals when clicked on menu icon)-->
+    <nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge"
+        style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
+        <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright"
+            style="padding:0 12px;">
+            <i class="fa fa-remove"></i>
+        </a>
+        <div class="w3-bar-block w3-center">
+            <a href="/profile" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
+                onclick="closeNav()">Curriculum</a>
+            <a href="/elaLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
+                onclick="closeNav()">Language Arts</a>
+            <a href="/mathLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
+                onclick="closeNav()">Math</a>
+            <a href="/scienceLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
+                onclick="closeNav()">Science</a>
+            <a href="/historyLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
+                onclick="closeNav()">History</a>
+            <a href="/socialLessons" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
+                onclick="closeNav()">Social Studies</a>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="w3-main w3-padding-large" style="margin-left:40%">
+        <!-- Menu icon to open sidebar -->
+        <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;"
+            onclick="openNav()"><i class="fa fa-bars"></i></span>
+        <!-- Header -->
+        <header class="w3-container w3-center" style="padding:128px 16px" id="home">
+            <h1 class="w3-jumbo"><b>{{ studentFN }}</b></h1>
+            <p>2023-2024 Homeschool Year</p>
+            <img src="data:image/png;base64,{{ studentPicture.userpxUploadPic }}"
+                class="w3-image w3-hide-large w3-hide-small w3-round" style="display:block;width:60%;margin:auto;">
+            <img src="data:image/png;base64,{{ studentPicture.userpxUploadPic }}"
+                class="w3-image w3-hide-large w3-hide-medium w3-round" width="1000" height="1333">
+        </header>
+        <!-- Portfolio Section -->
+        <div class="w3-padding-32 w3-content" id="portfolio">
+            <h2 class="w3-text-grey">My Work</h2>
+            <hr class="w3-opacity">
+            <!-- Grid for photos -->
+            <div class="w3-row-padding" style="margin:0 -16px">
                 <div class="w3-row-padding" style="margin:0 -16px">
                     {% for subject, pics in pictures.items() %}
-                    <div class="w3-half">
-                        {% if pics %}
-                        {% for pic in pics %}
+                    <div class="w3-twothird">
+                    {% if pics %}
+                      {% for pic in pics %}
                         {% for img in pic %}
-                        {% if img %}
-                        <img src="data:image/png;base64, {{ img | b64encode }}" style="width:75%">
-                        {% endif %}
+                          {% if img %}
+                            {% if loop.index % 2 == 0 %}
+                                <img src="data:image/png;base64, {{ img | b64encode }}" style="width:75%">
+                                {% else %}
+                                <img src="data:image/png;base64, {{ img | b64encode }}" style="width:65%">
+                            {% endif %}
+                          {% endif %}
                         {% endfor %}
-                        {% endfor %}
-                        {% else %}
-                        <p>No pictures available for {{ subject | title }}</p>
-                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
                     </div>
                     {% endfor %}
                     <!-- End photo grid -->
                 </div>
-                <!-- End Portfolio Section -->
+                <!-- End photo grid -->
             </div>
-            <!-- About Section -->
-            <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
-                <h2>My Current Subjects</h2>
-                <hr class="w3-opacity">
-                <!-- <p></p> -->
-                <h3 class="w3-padding-16">Subject Grades & Total Lessons</h3>
-                {% for subject, score in manual_scores.items() %}
-                <p class="w3-wide">{{ subject|title }}</p>
-                <div class="w3-light-grey">
-                    <div
-                        class="w3-container w3-center w3-padding-small score-bar {% if score >= 90 %}score-bar-excellent{% elif score >= 70 %}score-bar-good{% elif score >= 60 %}score-bar-moderate{% elif score >= 49 %}score-bar-poor{% else %}score-bar-0{% endif %}">
-                        {{ score|default(0.00)|round(2) }}%
-                    </div>
-                </div>
-                <br>
-                {% endfor %}
-                <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
-                    <div class="w3-quarter w3-section">
-                        <span class="w3-xlarge">Lessons:</span><br>
-                    </div>
-                    <div class="w3-quarter w3-section">
-                        <span class="w3-xlarge">140+</span><br>
-                        Language Arts
-                    </div>
-                    <div class="w3-quarter w3-section">
-                        <span class="w3-xlarge">120+</span><br>
-                        Math
-                    </div>
-                    <div class="w3-quarter w3-section">
-                        <span class="w3-xlarge">25+</span><br>
-                        Science
-                    </div>
-                </div>
-                <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
-                    <div class="w3-quarter w3-section">
-                        <span class="w3-xlarge">45+</span><br>
-                        History
-                    </div>
-                    <div class="w3-quarter w3-section">
-                        <span class="w3-xlarge">60+</span><br>
-                        Social Studies
-                    </div>
-                </div>
-                <!-- Testimonials -->
-                <h3 class="w3-padding-24">Funny Things I've Said</h3>
-                <img src="../static/img/elaMeme.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                    style="width:80px">
-                <p><span class="w3-large w3-text-black w3-margin-right">Unscramble Words</span> Language Arts</p>
-                <p>hsit | "shit"</p><br>
-                <img src="../static/img/mathMeme.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                    style="width:80px">
-                <p><span class="w3-large w3-text-black w3-margin-right">Units of Measure</span> Math</p>
-                <p>To change centimeters to meters you? "take out centi"</p><br>
-                <img src="../static/img/socialMeme.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                    style="width:80px">
-                <p><span class="w3-large w3-text-black w3-margin-right">Population</span> Social Studies</p>
-                <p>What do you think is the best solution to verpopulation? Support your rgument with examples. "The Hunger
-                    Games"</p><br>
-                <!-- End About Section -->
-            </div>
-            <!-- About Section -->
-            <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
-                <h2></h2>
-                <hr class="w3-opacity">
-                <!-- <p></p> -->
-                <h3 class="w3-padding-16">Housekeeping</h3>
-                <p class="w3-wide">Change your password:</p>
-                <div class="w3-light-grey">
-                    <div class="">
-                        <a href="{{ url_for('authUser_views.changePassword') }}" class="btn btn btn-lg btn-outline-info shadow-lg py-1" type="button">Change Password</a>
-                    </div>
-                </div>
-                <br>
-                <!-- End About Section -->
-            </div>
-            <!-- Footer -->
-            <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin:-24px">
-                {% block footer %}
-                <div class="col-md-4 d-flex align-items-center">
-                    <div href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                        <svg class="bi" width="30" height="24">
-                            <use xlink:href="#bootstrap"></use>
-                        </svg>
-                    </div>
-                    <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Sprightly Homeschool & Life</span>
-                </div>
-                <div class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <i class="ms-3"><a class="text-body-secondary" href="https://twitter.com/MarcellaDaANLST"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-twitter" viewBox="0 0 16 16">
-                                <path
-                                    d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
-                            </svg></a></i>
-                    <i class="ms-3"><a class="text-body-secondary" href="https://github.com/MarcellaHarr"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-github" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                            </svg></a></i>
-                    <i class="ms-3"><a class="text-body-secondary" href="https://www.linkedin.com/in/marcellalharris"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-linkedin" viewBox="0 0 16 16">
-                                <path
-                                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
-                            </svg></a></i>
-                </div>
-                {% endblock %}
-            </footer>
-            <!-- END PAGE CONTENT -->
+            <!-- End Portfolio Section -->
         </div>
-        <!-- scripts -->
-        <script src="../static/js/openCloseSidebar.js"></script>
-    </body>
+        <!-- About Section -->
+        <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
+            <h2>My Current Subjects</h2>
+            <hr class="w3-opacity">
+            <!-- <p></p> -->
+            <h3 class="w3-padding-16">Subject Grades & Total Lessons</h3>
+            {% for subject, score in manual_scores.items() %}
+            <p class="w3-wide">{{ subject|title }}</p>
+            <div class="w3-light-grey">
+                <div
+                    class="w3-container w3-center w3-padding-small score-bar {% if score >= 90 %}score-bar-excellent{% elif score >= 70 %}score-bar-good{% elif score >= 60 %}score-bar-moderate{% elif score >= 49 %}score-bar-poor{% else %}score-bar-0{% endif %}">
+                    {{ score|default(0.00)|round(2) }}%
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+            <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
+                <div class="w3-quarter w3-section">
+                    <span class="w3-xlarge">Lessons:</span><br>
+                </div>
+                <div class="w3-quarter w3-section">
+                    <span class="w3-xlarge">140+</span><br>
+                    Language Arts
+                </div>
+                <div class="w3-quarter w3-section">
+                    <span class="w3-xlarge">120+</span><br>
+                    Math
+                </div>
+                <div class="w3-quarter w3-section">
+                    <span class="w3-xlarge">25+</span><br>
+                    Science
+                </div>
+            </div>
+            <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
+                <div class="w3-quarter w3-section">
+                    <span class="w3-xlarge">45+</span><br>
+                    History
+                </div>
+                <div class="w3-quarter w3-section">
+                    <span class="w3-xlarge">60+</span><br>
+                    Social Studies
+                </div>
+            </div>
+            <!-- Testimonials -->
+            <h3 class="w3-padding-24">Funny Things I've Said</h3>
+            <img src="../static/img/elaMeme.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                style="width:80px">
+            <p><span class="w3-large w3-text-black w3-margin-right">Unscramble Words</span> Language Arts</p>
+            <p>hsit | "shit"</p><br>
+            <img src="../static/img/mathMeme.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                style="width:80px">
+            <p><span class="w3-large w3-text-black w3-margin-right">Units of Measure</span> Math</p>
+            <p>To change centimeters to meters you? "take out centi"</p><br>
+            <img src="../static/img/socialMeme.PNG" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                style="width:80px">
+            <p><span class="w3-large w3-text-black w3-margin-right">Population</span> Social Studies</p>
+            <p>What do you think is the best solution to verpopulation? Support your rgument with examples. "The Hunger
+                Games"</p><br>
+            <!-- End About Section -->
+        </div>
+        <!-- About Section -->
+        <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
+            <h2></h2>
+            <hr class="w3-opacity">
+            <!-- <p></p> -->
+            <h3 class="w3-padding-16">Housekeeping</h3>
+            <p class="w3-wide">Change your password:</p>
+            <div class="w3-light-grey">
+                <div class="">
+                    <a href="{{ url_for('authUser_views.changePassword') }}"
+                        class="btn btn btn-lg btn-outline-info shadow-lg py-1" type="button">Change Password</a>
+                </div>
+            </div>
+            <br>
+            <!-- End About Section -->
+        </div>
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin:-24px">
+            {% block footer %}
+            <div class="col-md-4 d-flex align-items-center">
+                <div href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </div>
+                <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Sprightly Homeschool & Life</span>
+            </div>
+            <div class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <i class="ms-3"><a class="text-body-secondary" href="https://twitter.com/MarcellaDaANLST"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-twitter" viewBox="0 0 16 16">
+                            <path
+                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        </svg></a></i>
+                <i class="ms-3"><a class="text-body-secondary" href="https://github.com/MarcellaHarr"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-github" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg></a></i>
+                <i class="ms-3"><a class="text-body-secondary" href="https://www.linkedin.com/in/marcellalharris"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-linkedin" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                        </svg></a></i>
+            </div>
+            {% endblock %}
+        </footer>
+        <!-- END PAGE CONTENT -->
+    </div>
+    <!-- scripts -->
+    <script src="../static/js/openCloseSidebar.js"></script>
+</body>
+
 </html>
